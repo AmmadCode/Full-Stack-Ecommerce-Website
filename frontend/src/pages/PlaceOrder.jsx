@@ -38,8 +38,16 @@ const PlaceOrder = () => {
     setFormData((data) => ({ ...data, [name]: value }));
   };
 
+  const openWhatsApp = () => {
+    window.open("https://wa.me/923201429623", "_blank");
+  };
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    if (!token) {
+      toast.error("Please login to continue");
+      navigate("/login");
+    }
     try {
       let orderItems = [];
 
@@ -79,8 +87,23 @@ const PlaceOrder = () => {
             toast.success("Order Placed Successfully");
             navigate("/orders");
           } else {
-navigate("/login")
             toast.error(response.data.msg);
+          }
+          break;
+        }
+        case "stripe": {
+          const response = await axios.post(
+            backendUrl + "/api/order/stripe",
+            orderData,
+            {
+              headers: { token },
+            }
+          );
+          if (response.data.success) {
+            const { session_url } = response.data;
+            window.location.replace(session_url);
+          } else {
+            toast.error(response.data.message);
           }
           break;
         }
@@ -246,15 +269,18 @@ navigate("/login")
               <img className="h-5 mx-4" src={assets.stripe_logo} alt="" />
             </div>
             <div
-              onClick={() => setMethod("razorpay")}
+              onClick={() => {
+                setMethod("whatsapp");
+                openWhatsApp();
+              }}
               className="flex items-center gap-3 border border-gray-400 p-2 px-3 cursor-pointer"
             >
               <p
                 className={`min-w-3.5 h-3.5 border border-gray-300  rounded-full ${
-                  method === "razorpay" ? "bg-green-400" : ""
+                  method === "whatsapp" ? "bg-green-400" : ""
                 } `}
               ></p>
-              <img className="h-5 mx-4" src={assets.razorpay_logo} alt="" />
+              <img className="h-5 mx-4" src={assets.whatsapp_icon} alt="" />
             </div>
             <div
               onClick={() => setMethod("cod")}
