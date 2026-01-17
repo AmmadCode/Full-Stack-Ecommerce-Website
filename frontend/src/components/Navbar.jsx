@@ -44,6 +44,16 @@ const Navbar = () => {
           <p>CONTACT</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
+        <li>
+          <a
+            href="https://forever-admin-olive-sigma.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-1 rounded-full bg-black text-white hover:bg-gray-700 transition-all shadow-sm"
+          >
+            ADMIN
+          </a>
+        </li>
       </ul>
 
       <div className="flex items-center gap-6">
