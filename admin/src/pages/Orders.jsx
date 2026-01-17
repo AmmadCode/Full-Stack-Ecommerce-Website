@@ -18,7 +18,7 @@ const Orders = ({ token }) => {
         {},
         { headers: { token } }
       );
-      console.log("Orders response:", response.data);
+
       if (response.data.success) {
         setOrders(response.data.orders);
       } else {

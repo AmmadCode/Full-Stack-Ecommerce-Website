@@ -49,7 +49,7 @@ const Add = ({ token }) => {
           },
         }
       );
-      console.log(response);
+
       if (response.data.success) {
         toast.success(response.data.msg);
         setName("");

@@ -19,7 +19,7 @@ const Orders = () => {
         {},
         { headers: { token } }
       );
-      console.log(response.data);
+
       if (response.data.success) {
         let allOrderItems = [];
         response.data.orders.map((order) => {
@@ -31,7 +31,7 @@ const Orders = () => {
             allOrderItems.push(item);
           });
         });
-        console.log(allOrderItems);
+
         setOrderData(allOrderItems);
       }
     } catch (error) {
@@ -69,10 +69,14 @@ const Orders = () => {
                   <p>Size: M</p>
                 </div>
                 <p className="mt-2">
-                  Date: <span className="text-gray-400">{new Date(prod.date).toDateString()}</span>
+                  Date:{" "}
+                  <span className="text-gray-400">
+                    {new Date(prod.date).toDateString()}
+                  </span>
                 </p>
                 <p className="mt-2">
-                  Payment: <span className="text-gray-400">{prod.paymentMethod}</span>
+                  Payment:{" "}
+                  <span className="text-gray-400">{prod.paymentMethod}</span>
                 </p>
               </div>
             </div>
@@ -83,7 +87,7 @@ const Orders = () => {
                 <p className="text-sm md:text-base">{prod.status}</p>
               </div>
               <button
-              onClick={loadOrderData}
+                onClick={loadOrderData}
                 className="bg-black text-white text-sm my-8 px-6 py-3 cursor-pointer 
              transition-all duration-300 ease-out
              hover:bg-gray-900 hover:shadow-lg hover:-translate-y-1

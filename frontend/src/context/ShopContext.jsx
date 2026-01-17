@@ -58,7 +58,6 @@ const ShopContextProvider = (props) => {
         try {
           if (cartItem[items][item] > 0) {
             totalCount += cartItem[items][item];
-            console.log(totalCount);
           }
         } catch (error) {
           console.log(error);
@@ -106,7 +105,7 @@ const ShopContextProvider = (props) => {
   const getProductsData = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
-      console.log(response.data.products);
+
       if (response.data.success) {
         setProducts(response.data.products);
       } else {

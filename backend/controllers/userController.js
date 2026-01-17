@@ -70,7 +70,6 @@ const registerUser = async (req, res) => {
     });
 
     const user = await newUser.save();
-    console.log(user);
 
     // Creating token
     const token = createToken(user._id);

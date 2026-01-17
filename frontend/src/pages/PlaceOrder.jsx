@@ -72,7 +72,6 @@ const PlaceOrder = () => {
         items: orderItems,
         amount: getCartAmount() + deliveryCharge,
       };
-      console.log(orderData);
 
       switch (method) {
         // Api calls for COD
